@@ -14,7 +14,7 @@
 \usepackage{microtype}  % Melhora o espaçamento e a justificação do texto
 \usepackage[hyphens]{url} % Para formatar URLs de forma inteligente
 \usepackage{hyperref}   % Cria links clicáveis (citações, seções, etc.) - DEVE SER O ÚLTIMO PACOTE!
-
+\usepackage{float}
 % --- Comandos específicos do template original (se necessário) ---
 % Estes comandos são necessários apenas para a geração deste artigo exemplo. 
 % Eles não fazem parte do estilo SBATeX.
@@ -27,7 +27,7 @@
 
 % O restante do seu código continua aqui...
 
-% CABEÇALHO
+% CABEÇALHOS
 
 \title{Módulo 1 - Processo Massa Mola}
 
@@ -38,6 +38,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\author{Eduardo Rodrigues Cordeiro}{eduardorc14@ufmg.br}
 \author{Pedro Henrique de Menezes Cosme}{pedrocosme@ufmg.br}
 
 \twocolumn[
@@ -62,10 +63,8 @@ Este trabalho detalha a modelagem matemática do sistema massa-mola ECP Model 21
 
 \selectlanguage{brazil}
 
-\section{Introdução e Objetivo}
-
-
-\section{Detalhes da Planta}
+\input{introducao}
+\input{descricao}
 
 
 
