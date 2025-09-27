@@ -1,0 +1,41 @@
+\section{Resultados da Identificação}
+
+Seguindo a metodologia descrita, o sistema foi excitado com um sinal chirp, e os ganhos foram medidos para cada ponto.
+
+\subsection{Dados Experimentais e Estimação Inicial}
+Os ganhos experimentais medidos estão consolidados na Tabela \ref{tab:ganhos}.
+
+% --- INSIRA SEUS DADOS DE GANHO MEDIDOS AQUI ---
+\begin{table}[h]
+    \centering
+    \caption{Ganhos medidos experimentalmente.}
+    \label{tab:ganhos}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Frequência (Hz)} & \textbf{Ganho (|Y/U|)} \\
+        \midrule
+        X & Y \\ % Exemplo
+        X & Y \\ % Exemplo
+        % ... adicione as outras medições aqui ...
+        X & Y \\ % Exemplo
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+A partir desses dados, os parâmetros da função de transferência (\ref{eq:ft_planta}) foram estimados via mínimos quadrados. Os valores obtidos para a estimação inicial estão na Tabela \ref{tab:parametros_inicial}.
+
+% --- INSIRA SEUS PARÂMETROS CALCULADOS (COM O ERRO) AQUI ---
+\begin{table}[h]
+    \centering
+    \caption{Parâmetros do modelo linearizado (estimação inicial).}
+    \label{tab:parametros_inicial}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Parâmetro} & \textbf{Valor Estimado} \\
+        \midrule
+        $\hat{\eta}$ & XX.X \\ % Substitua pelo seu valor de eta
+        $\hat{A}$    & YY.Y \\ % Substitua pelo seu valor de A
+        \bottomrule
+    \end{tabular}
+\end{table}
+

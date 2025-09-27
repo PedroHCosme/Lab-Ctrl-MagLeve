@@ -1,0 +1,44 @@
+\section{Modelagem Matemática e Identificação}
+
+A dinâmica vertical da esfera suspensa pode ser descrita pela Segunda Lei de Newton, resultando na seguinte equação diferencial não linear \cite{kawakami2003}:
+
+\begin{equation}
+    m\frac{d^{2}H}{dt^{2}} = mg - k\frac{I^{2}}{H^{2}}
+\end{equation}
+
+onde $m$ é a massa da esfera e $g$ é a aceleração da gravidade.
+
+\subsection{Linearização do Modelo}
+Para o projeto de controladores lineares, o modelo é linearizado através de uma expansão em série de Taylor de primeira ordem em torno de um ponto de equilíbrio ($H_0$, $I_0$). Considerando pequenas variações em torno deste ponto ($h = H - H_0$ e $i = I - I_0$), a equação dinâmica linearizada se torna:
+
+\begin{equation}
+    m\frac{d^{2}h}{dt^{2}} = \lambda h - \beta i
+\end{equation}
+onde $\lambda = \frac{2mg}{H_0}$ e $\beta = \frac{2kI_0}{H_0^2}$.
+
+Considerando as relações lineares do sensor e do atuador ($y = \gamma h$ e $i = \rho u$, onde $y$ e $u$ são as variações da tensão de saída e de controle), a dinâmica pode ser expressa em termos de variáveis de tensão. Aplicando a Transformada de Laplace, obtemos a função de transferência do sistema \cite{kawakami2003}:
+
+\begin{equation}
+    G(s) = \frac{Y(s)}{U(s)} = -\frac{A}{s^{2} - \eta}
+    \label{eq:ft_planta}
+\end{equation}
+
+onde $A$ e $\eta$ são constantes positivas. A presença de um polo no semiplano direito ($s = +\sqrt{\eta}$) confirma a instabilidade do sistema em malha aberta. O objetivo da identificação é estimar os valores de $A$ e $\eta$ experimentalmente.
+
+\subsection{Método de Identificação por Resposta em Frequência}
+O método de identificação adotado consiste em analisar a resposta do sistema em malha fechada a uma perturbação senoidal \cite{kawakami2003}. O sistema é primeiramente estabilizado por um controlador analógico. Em seguida, um sinal senoidal de pequena amplitude é somado à entrada do sistema.
+
+Para uma entrada senoidal, a resposta em frequência teórica do modelo linearizado (\ref{eq:ft_planta}) é puramente real:
+\begin{equation}
+    G(j\omega) = \frac{A}{\omega^{2} + \eta}
+\end{equation}
+
+O ganho do sistema em uma dada frequência $\omega$ é, portanto, $|G(j\omega)|$. Medindo-se o ganho experimentalmente em $N$ frequências distintas ($\omega_1, \omega_2, ..., \omega_N$), obtemos um sistema de equações lineares:
+\begin{equation}
+    A - \eta \cdot \text{Gain}(\omega_i) = \omega_i^2 \cdot \text{Gain}(\omega_i), \quad i=1,...,N
+\end{equation}
+
+Este sistema pode ser escrito na forma matricial $P\theta = Q$, onde $\theta = [\eta, A]^T$ é o vetor de parâmetros a ser estimado. A solução que minimiza o erro quadrático é dada por \cite{kawakami2003}:
+\begin{equation}
+    \hat{\theta} = (P^T P)^{-1} P^T Q
+\end{equation}

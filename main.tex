@@ -1,87 +1,66 @@
-% --- Definição da Classe do Documento ---
 \documentclass[conference,harvard,brazil,english]{sbatex}
 
-% --- Codificação e Fontes (Correção Essencial) ---
+% --- Codificação e Fontes ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 
-% --- Pacotes Recomendados para Qualidade e Funcionalidade ---
-\usepackage{graphicx}   % Para incluir figuras
-\usepackage{amsmath}    % Para equações avançadas (já estava no seu código)
-\usepackage{amssymb}    % Complementa o amsmath com mais símbolos
-\usepackage{booktabs}   % Para tabelas com visual profissional
-\usepackage{microtype}  % Melhora o espaçamento e a justificação do texto
-\usepackage[hyphens]{url} % Para formatar URLs de forma inteligente
-\usepackage{hyperref}   % Cria links clicáveis (citações, seções, etc.) - DEVE SER O ÚLTIMO PACOTE!
+% --- Pacotes Recomendados ---
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
 
-% --- Comandos específicos do template original (se necessário) ---
-% Estes comandos são necessários apenas para a geração deste artigo exemplo. 
-% Eles não fazem parte do estilo SBATeX.
 \makeatletter
 \def\verbatim@font{\normalfont\ttfamily\footnotesize}
 \makeatother
 
-% --- Início do Documento ---
 \begin{document}
-
-% O restante do seu código continua aqui...
-
-% CABEÇALHO
 
 \title{Módulo 1 - Processo Massa Mola}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% O processo de revisao do CBA 2014 sera DOUBLE BLIND, portanto NAO inclua
-% autores na versão que será submetida para revisão
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \author{Pedro Henrique de Menezes Cosme}{pedrocosme@ufmg.br}
+\author[1]{Pedro Henrique Silva Lima}{pedroh404@ufmg.br}
+
+
+\address{Universidade Federal de Minas Gerais (UFMG)}
+
 
 \twocolumn[
-
 \maketitle
+
 
 \selectlanguage{english}
 \begin{abstract}
-This work details the mathematical modeling of the ECP Model 210 mass-spring system to obtain a fourth-order model. Physical parameters of mass ($m$), spring constant ($k$), and damping ($b$) were experimentally identified through open-loop tests (step and free response) on simplified configurations. From the data, intermediate second-order models were estimated, which provided the basis for calculating the physical parameters. The final model, expressed in transfer functions, was validated by comparing its simulated response with experimental data, showing good agreement.  \end{abstract}
+This report details the process of identifying the parameters of a linearized model for a Feedback Instruments magnetic levitation (Maglev) system. The procedure is based on a frequency-domain identification technique, where the system is excited with sinusoidal signals in a closed-loop configuration. The parameters of the second-order unstable model were estimated using the least-squares method, and the resulting model was validated by comparing its frequency response with experimental data.
+\end{abstract}
 
-\keywords{Control Systems, Mass-spring, Position Control, Mathematical Model.}
+\keywords{System Identification, Magnetic Levitation, Maglev, Frequency Response.}
 
 \selectlanguage{brazil}
 \begin{abstract}
-Este trabalho detalha a modelagem matemática do sistema massa-mola ECP Model 210 para obter um modelo de quarta ordem. Parâmetros físicos de massa ($m$), constante elástica ($k$) e amortecimento ($b$) foram identificados experimentalmente através de ensaios em malha aberta (resposta ao degrau e livre) em configurações simplificadas. A partir dos dados, foram estimados modelos intermediários de segunda ordem, que serviram de base para o cálculo dos parâmetros físicos. O modelo final, expresso em funções de transferência, foi validado pela comparação de sua resposta simulada com dados experimentais, demonstrando boa correspondência.
+Este relatório detalha o processo de identificação dos parâmetros de um modelo linearizado para a planta de levitação magnética (Maglev) da Feedback Instruments. O procedimento baseia-se em uma técnica de identificação no domínio da frequência, na qual o sistema é excitado com sinais senoidais em uma configuração de malha fechada. Os parâmetros do modelo instável de segunda ordem foram estimados pelo método dos mínimos quadrados, e o modelo resultante foi validado pela comparação de sua resposta em frequência com os dados experimentais.
 \end{abstract}
 
-\keywords{Sistemas de controle, Massa-mola, Controle de posição, Modelo matemático}
+\keywords{Identificação de Sistemas, Levitação Magnética, Maglev, Resposta em Frequência.}
 ]
-
-% CONTRIBUIÇÃO
 
 \selectlanguage{brazil}
 
-\section{Introdução e Objetivo}
+% --- INCLUSÃO DAS SEÇÕES DO RELATÓRIO ---
+\input{introducao.tex}
+\input{detalhes_planta}
+\input{modelagem.tex}
+\input{resultados.tex}
+\input{projeto_controlador.tex}
+\input{conclusao.tex}
 
-
-\section{Detalhes da Planta}
-
-
-
-\section{Especificações de Desempenho Desejado}
-
-
-\section{Modelagem Matemática}
-
-
-\section{Identificação por Resposta em Frequência} 
-
-
-% BIBLIOGRAFIA
-\nocite{*}
+% --- BIBLIOGRAFIA ---
+\nocite{*} 
 \bibliography{exemplo}
-\cite{mozelli2020}
-\cite{oliveira2011}
-\cite{parks1999}
+
 \end{document}

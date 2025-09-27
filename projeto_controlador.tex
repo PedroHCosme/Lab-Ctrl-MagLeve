@@ -1,0 +1,48 @@
+\section{Projeto do Controlador e Validação}
+
+Com base no modelo inicialmente identificado, foi projetado um controlador com o objetivo de estabilizar a planta e garantir o seguimento de referência.
+
+\subsection{Falha na Implementação e Diagnóstico do Erro}
+O primeiro controlador foi projetado utilizando o modelo com os parâmetros da Tabela \ref{tab:parametros}. No entanto, ao ser implementado na planta real, o controlador não funcionou como o esperado. A ação de controle mostrou-se desproporcional, resultando em um comportamento instável e saturação do atuador.
+
+Após análise, com o auxílio do professor, foi diagnosticado que o modelo matemático, embora representasse bem a dinâmica (polos), continha um erro significativo no ganho estático. Verificou-se que o ganho estimado ($\hat{A}_{inicial}$) estava incorreto por um fator de aproximadamente []. Esse erro de propagação, possivelmente ocorrido durante a conversão de unidades ou coleta de dados, foi a causa da falha do controlador inicial.
+
+\subsection{Correção do Modelo e Novo Projeto}
+Para corrigir o modelo, foi aplicado um fator de correção ao ganho $\hat{A}$. O novo valor ajustado do parâmetro é apresentado na Tabela \ref{tab:parametros_corrigido}.
+
+% --- INSIRA O PARÂMETRO A CORRIGIDO AQUI ---
+\begin{table}[h]
+    \centering
+    \caption{Parâmetro de ganho do modelo corrigido.}
+    \label{tab:parametros_corrigido}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Parâmetro} & \textbf{Valor Corrigido} \\
+        \midrule
+        $\hat{A}_{corrigido}$ & % Insira o valor de A corrigido aqui
+        \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+De posse do modelo corrigido, um novo controlador foi projetado. A estratégia utilizada foi []. Os ganhos do controlador final são [].
+
+\subsection{Resultados do Controlador Ajustado}
+O controlador projetado com o modelo corrigido foi implementado na planta e, desta vez, apresentou um desempenho satisfatório. As Figuras \ref{fig:resp_degrau} e \ref{fig:resp_senoide} mostram a resposta do sistema em malha fechada para uma referência de onda quadrada e senoidal, respectivamente.
+
+% --- INSIRA SEUS GRÁFICOS DE RESULTADOS AQUI ---
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=\columnwidth]{grafico_degrau.png}
+    \caption{Resposta do sistema controlado a uma referência de onda quadrada.}
+    \label{fig:resp_degrau}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=\columnwidth]{grafico_senoide.png}
+    \caption{Resposta do sistema controlado a uma referência senoidal.}
+    \label{fig:resp_senoide}
+\end{figure}
+
+Os resultados demonstram que o sistema foi capaz de seguir as referências com estabilidade e precisão, validando tanto o modelo corrigido quanto o controlador projetado.

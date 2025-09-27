@@ -1,0 +1,24 @@
+\section{Descrição da Planta}
+
+A planta utilizada neste trabalho é o sistema de Levitação Magnética (Maglev) 33-210 da Feedback Instruments \cite{feedback2006install}. Seus principais subsistemas são:
+
+\begin{itemize}
+    \item \textbf{Unidade Mecânica:} Composta por uma base com interface de conexão, um eletroímã (bobina) montado na parte superior, uma esfera metálica e um par de sensores infravermelhos (emissor e receptor) que medem a posição vertical da esfera.
+    \item \textbf{Sistema de Controle:} O controle em tempo real é realizado por um computador equipado com uma placa de aquisição de dados (Advantech PCI1711), que se comunica com a planta através de uma interface analógica (33-301) \cite{feedback2006install}. Os algoritmos de controle são implementados no ambiente MATLAB/Simulink. O sistema envia sinais de tensão para um driver de corrente, que alimenta a bobina para gerar o campo magnético.
+\end{itemize}
+
+\subsection{Variáveis do Processo}
+As principais variáveis envolvidas no processo de controle são:
+\begin{itemize}
+    \item \textbf{Variável Manipulada:} Tensão de controle ($u$) aplicada ao driver de corrente. Esta tensão é convertida em uma corrente ($i$) que flui pela bobina do eletroímã.
+    \item \textbf{Variável Medida:} Posição vertical da esfera ($H$), medida pelo sensor infravermelho e convertida em um sinal de tensão ($Y$).
+    \item \textbf{Variável de Referência:} Posição desejada para a esfera, ou setpoint ($Y_{ref}$).
+\end{itemize}
+
+\subsection{Não-Linearidades}
+A principal característica não linear do sistema é a força de atração eletromagnética ($F_M$), que é descrita pela seguinte equação \cite{kawakami2003,feedback2006control}:
+\begin{equation}
+    F_{M} = k \frac{I^{2}}{H^{2}}
+    \label{eq:forca_magnetica}
+\end{equation}
+onde $k$ é uma constante eletromecânica, $I$ é a corrente na bobina e $H$ é a distância entre a esfera e o eletroímã. Essa relação quadrática exige que o sistema seja linearizado para a aplicação de técnicas clássicas de projeto de controladores.
