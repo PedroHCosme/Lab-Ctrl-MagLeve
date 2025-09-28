@@ -1,0 +1,71 @@
+% --- Definição da Classe do Documento ---
+\documentclass[conference,harvard,brazil,english]{sbatex}
+
+% --- Codificação e Fontes (Correção Essencial) ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% --- Pacotes Recomendados para Qualidade e Funcionalidade ---
+\usepackage{graphicx}   % Para incluir figuras
+\usepackage{amsmath}    % Para equações avançadas (já estava no seu código)
+\usepackage{amssymb}    % Complementa o amsmath com mais símbolos
+\usepackage{booktabs}   % Para tabelas com visual profissional
+\usepackage{microtype}  % Melhora o espaçamento e a justificação do texto
+\usepackage[hyphens]{url} % Para formatar URLs de forma inteligente
+\usepackage{hyperref}   % Cria links clicáveis (citações, seções, etc.) - DEVE SER O ÚLTIMO PACOTE!
+
+% --- Comandos específicos do template original (se necessário) ---
+% Estes comandos são necessários apenas para a geração deste artigo exemplo. 
+% Eles não fazem parte do estilo SBATeX.
+\makeatletter
+\def\verbatim@font{\normalfont\ttfamily\footnotesize}
+\makeatother
+
+% --- Início do Documento ---
+\begin{document}
+
+
+\section{Calibração}
+O bloco controlador criado inicialmente era:
+
+\begin{equation}
+    \frac{-16,737s^2 -96,287961s -101,602}{s^2+258,2s}
+\end{equation}
+
+Tentando algumas variações desses números se percebeu que o controle não estava funcionando, só era possível manter a esfera estática por alguns segundos.
+
+Após investigação, foi determinado que o bloco de transfer function do matlab provavelmente apresenta algum delay em tempo real que dificultava o controle.
+
+Por conta disso foi decidido utilizar o bloco PID do software do MAGLEV. O PID projetado foi:
+
+\begin{equation}
+    \frac{(s+1.3)(s+0.4)}{s}
+\end{equation}
+
+Entretanto, o controle ainda não estava satisfatório. O comportamento aparentava um ganho baixo, investigando mais a fundo o problema foi visto que o modelo calculado realmente tinha um ganho que não condizia com a realidade.
+
+Após um pouco de fine tunning o resultado foi esse:
+
+\begin{figure}[htbp] % h: here, t: top, b: bottom, p: page of floats
+        \centering % Centers the image and caption
+        \includegraphics[width=0.3\textwidth]{pid.jpg}
+        \caption{Controlador PID desenvolvido}
+        \label{fig:myimage} % Label for cross-referencing
+    \end{figure}
+
+\section{Conclusão} 
+
+Este trabalho apresentou o processo de identificação e controle de um sistema de levitação magnética, utilizando a metodologia de resposta em frequência, conforme \cite{kawakami2003}, para estimar os parâmetros de um modelo linearizado de segunda ordem da planta. Um aspecto fundamental foi a validação experimental, que evidenciou discrepâncias no ganho do modelo inicialmente identificado. A investigação e correção desse erro destacaram a importância de confrontar o modelo teórico com o comportamento real da planta, permitindo o ajuste adequado e o projeto de um controlador capaz de atender aos objetivos de estabilização e seguimento de referência.
+
+Após a implementação do controlador PID, considerou-se o experimento concluído, uma vez que o objetivo principal da primeira rotação era estabilizar a planta. O grupo identificou como uma das maiores dificuldades do laboratório a aquisição confiável do sistema, percebendo também que, devido à natureza não linear da planta, o modelo obtido é válido apenas para uma faixa restrita de condições iniciais.
+
+Além dos resultados técnicos, a experiência proporcionou um aprendizado prático sobre os desafios e o caráter iterativo da modelagem e do controle de sistemas físicos, bem como o domínio de novas ferramentas no MATLAB, como o sisotools, útil na construção de diagramas de Nyquist, Bode e lugar das raízes.
+
+% BIBLIOGRAFIA
+\nocite{*}
+\bibliography{exemplo}
+\cite{mozelli2020}
+\cite{oliveira2011}
+\cite{parks1999}
+\end{document}
